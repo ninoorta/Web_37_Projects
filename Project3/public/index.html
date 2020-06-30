@@ -42,28 +42,27 @@
         </tr>
       </thead>
       <tbody id="body-content">
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>@fat</td>
-        </tr>
       </tbody>
     </table>
 
-    <div class="pagination-controls">
-      <a href="">
-        <i class="fas fa-chevron-left"></i>
-      </a>
-        <span class="paginations" id="paginations">
-          <a href="">1</a>
-          <a href="">2</a>
-          <a href="">3</a>
-        </span>
+    <div class="pageSize-area">
+      <label for="pageSize">Choose the number of items you want:</label>
 
-      <a href="">
+      <select id="pageSize" >
+        <option value="3">3</option>
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+      </select>
+    </div>
+
+    <div class="pagination-controls">
+      <a href="" id="left">
+        <i class="fas fa-chevron-left" ></i>
+      </a>
+      <span id="paginations">
+      </span>
+
+      <a href=""  id="right">
         <i class="fas fa-chevron-right"></i>
       </a>
     </div>

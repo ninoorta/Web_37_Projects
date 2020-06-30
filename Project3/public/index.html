@@ -47,8 +47,8 @@
             Actions
           </th>
           <th scope="col" for="sorts">
-            Sort: 
-            <select id="sorts" name="sorts" >
+            Sort:
+            <select id="sorts" name="sorts">
               <option value="asc" selected>Ascending</option>
               <option value="desc">Descending</option>
             </select>
@@ -58,6 +58,78 @@
       <tbody id="body-content">
       </tbody>
     </table>
+
+
+        <!-- Add Modal -->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <label for="">Title:</label>
+             <input type="text" name="title" id="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="addBtnSubmit" class="btn btn-outline-primary">Yes</button>
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Update Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <label for="">Title:</label>
+         <input type="text" name="title">
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="UpdateBtnSubmit" class="btn btn-outline-primary">Yes</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            You really want to delete this product?
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="deleteBtnSubmit" data-dismiss="modal" class="btn btn-outline-primary">Yes</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
     <div class="pageSize-area">
       <label for="pageSize">Choose the number of items you want: </label>
@@ -71,12 +143,12 @@
 
     <div class="pagination-controls">
       <a href="" id="left">
-        <i class="fas fa-chevron-left" ></i>
+        <i class="fas fa-chevron-left"></i>
       </a>
       <span id="paginations">
       </span>
 
-      <a href=""  id="right">
+      <a href="" id="right">
         <i class="fas fa-chevron-right"></i>
       </a>
     </div>

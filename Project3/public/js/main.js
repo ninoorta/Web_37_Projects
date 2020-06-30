@@ -10,7 +10,7 @@ async function init(e) {
     let count = await res.json();
     count = count.count
 
-    console.log(count);
+    // console.log(count);
 
     if (!count) {
         throw new Error("Some thing wrong!")
@@ -65,8 +65,8 @@ async function showTableContent(pageSize, currentIndex, e, sortOption) {
         currentIndex = currentIndex + 1;
     }
 
-    if(sortOption){
-        
+    if (sortOption) {
+
     }
 
     sortOptionUrl = "&sortBy=title&sort=" + sortOption;
@@ -90,6 +90,17 @@ async function showTableContent(pageSize, currentIndex, e, sortOption) {
         <tr>
         <th scope="row">${element._id}</th>
         <td>${element.title}</td>
+        <td>
+                <button type="button" class="btn btn-outline-primary btnAdd" data-toggle="modal" data-target="#addModal">
+                   Add
+                </button>
+                <button type="button" id="${element._id}" class="btn btn-outline-warning btnUpdate" data-toggle="modal" data-target="#updateModal">
+                   Update
+                </button>
+                <button type="button" id="${element._id}" class="btn btn-outline-danger btnDelete" data-toggle="modal" data-target="#deleteModal">
+                Delete
+             </button>
+        </td>
       </tr>
         `
     });
@@ -108,8 +119,8 @@ async function showTableContent(pageSize, currentIndex, e, sortOption) {
     document.getElementById('body-content').innerHTML = tableContentHTML;
 
 
-    console.log(sortOption);
-    
+    // console.log(sortOption);
+
     document.getElementById('right').onclick = () => {
         showTableContent(pageSize, currentIndex + 1, event, sortOption)
     }
@@ -118,6 +129,7 @@ async function showTableContent(pageSize, currentIndex, e, sortOption) {
         showTableContent(pageSize, currentIndex - 1, event, sortOption)
     }
 
+    addDeleteEvent()
 
 }
 
@@ -150,7 +162,7 @@ function getPageSize() {
     let e = document.getElementById("pageSize");
     let pageSize = e.options[e.selectedIndex].value;
 
-    console.log(pageSize);
+    // console.log(pageSize);
     return pageSize
 }
 
@@ -158,6 +170,36 @@ function getSortOption() {
     let e = document.getElementById("sorts");
     let selectedOption = e.options[e.selectedIndex].value
 
-    console.log(selectedOption);
+    // console.log(selectedOption);
     return selectedOption
+}
+
+
+async function addDeleteEvent() {
+    let btnDelete = document.getElementsByClassName('btnDelete')
+
+    numberOfProducts = await getPageSize()
+    let content = document.getElementById('body-content')
+    let tr = content.getElementsByTagName('tr')
+    let arrIDs = [];
+
+    console.log(btnDelete);
+    console.log(btnDelete[2].id);
+
+    for (let i = 0; i < numberOfProducts.length; i++) {
+        // arrIDs.push(tr[i].firstElementChild.innerHTML)
+        // console.log(tr[i].firstElementChild.innerText);
+        console.log(btnDelete[i]);
+
+    }
+
+    console.log(tr);
+
+    console.log(arrIDs);
+
+    for (let i = 0; i < btnDelete.length; i++) {
+        // console.log(btnDelete[i]);
+
+    }
+
 }

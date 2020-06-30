@@ -5,6 +5,7 @@ window.onload = init;
 
 async function init(e) {
 
+
     let res = await fetch(url);
     let count = await res.json();
     count = count.count
@@ -18,25 +19,40 @@ async function init(e) {
         let currentIndex = 1;
 
         pageSize = await getPageSize()
-        showControls(count, pageSize)
-        showTableContent(pageSize, currentIndex, e);
+        sortOption = await getSortOption();
+        showControls(count, pageSize, sortOption)
+        showTableContent(pageSize, currentIndex, e, sortOption);
 
         document.getElementById('pageSize').onclick = async function () {
 
             pageSize = await getPageSize()
-            console.log(pageSize);
+            sortOption = await getSortOption();
+            // console.log(pageSize);
 
-            showControls(count, pageSize)
+            showControls(count, pageSize, sortOption)
 
-            showTableContent(pageSize, currentIndex, e);
+            showTableContent(pageSize, currentIndex, e, sortOption);
+        }
+
+        document.getElementById('sorts').onclick = async function () {
+            sortOption = await getSortOption();
+
+            // console.log(pageSize);
+            // console.log(sortOption);
+
+            showControls(count, pageSize, sortOption)
+
+            showTableContent(pageSize, currentIndex, e, sortOption);
         }
 
     }
 
 
+
+
 }
 
-async function showTableContent(pageSize, currentIndex, e) {
+async function showTableContent(pageSize, currentIndex, e, sortOption) {
     e.preventDefault();
 
     let max = localStorage.getItem("max")
@@ -49,7 +65,18 @@ async function showTableContent(pageSize, currentIndex, e) {
         currentIndex = currentIndex + 1;
     }
 
-    let url = `/api/product?pageSize=${pageSize}&pageIndex=${currentIndex}`
+    if(sortOption){
+        
+    }
+
+    sortOptionUrl = "&sortBy=title&sort=" + sortOption;
+
+    // console.log(sortOption);
+
+
+    let url = `/api/product?pageSize=${pageSize}&pageIndex=${currentIndex}${sortOptionUrl}`
+    // console.log(url);
+
     let res = await fetch(url)
     let data = await res.json()
     console.log(data);
@@ -81,18 +108,20 @@ async function showTableContent(pageSize, currentIndex, e) {
     document.getElementById('body-content').innerHTML = tableContentHTML;
 
 
+    console.log(sortOption);
+    
     document.getElementById('right').onclick = () => {
-        showTableContent(pageSize, currentIndex + 1, event)
+        showTableContent(pageSize, currentIndex + 1, event, sortOption)
     }
 
     document.getElementById('left').onclick = () => {
-        showTableContent(pageSize, currentIndex - 1, event)
+        showTableContent(pageSize, currentIndex - 1, event, sortOption)
     }
 
 
 }
 
-function showControls(count, pageSize) {
+function showControls(count, pageSize, sortOption) {
 
     document.getElementById('paginations').innerHTML = '';
     let paginationNumbers = Math.ceil(count / pageSize)
@@ -105,13 +134,13 @@ function showControls(count, pageSize) {
 
     for (let index = 1; index <= paginationNumbers; index++) {
         document.getElementById('paginations').innerHTML +=
-        `
-        <a class="pagination-items" href="" onclick=showTableContent(${pageSize},${index},event)>${index}</a>
+            `
+        <a class="pagination-items" href="" onclick=showTableContent(${pageSize},${index},event,"${sortOption}")>${index}</a>
         `
 
     }
 
-    
+
 
 
 }
@@ -123,4 +152,12 @@ function getPageSize() {
 
     console.log(pageSize);
     return pageSize
+}
+
+function getSortOption() {
+    let e = document.getElementById("sorts");
+    let selectedOption = e.options[e.selectedIndex].value
+
+    console.log(selectedOption);
+    return selectedOption
 }

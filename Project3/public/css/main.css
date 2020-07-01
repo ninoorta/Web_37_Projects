@@ -20,3 +20,9 @@ body{
 .fas { 
     margin-right: 10px;
 }
+
+.add-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}

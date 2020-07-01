@@ -25,6 +25,7 @@
     crossorigin="anonymous"></script>
 
   <script src="./js/main.js"></script>
+  <script src="./js/api.js"></script>
 
 </head>
 
@@ -38,6 +39,12 @@
   </h4>
 
   <div class="container">
+
+    <div class="add-area">
+      <button type="button" class="btn btn-outline-primary " id="btnAdd"  data-toggle="modal" data-target="#addModal">
+        Add
+     </button>
+    </div>
     <table class="table table-hover" id="table-content">
       <thead>
         <tr>
@@ -73,10 +80,10 @@
             </div>
             <div class="modal-body">
              <label for="">Title:</label>
-             <input type="text" name="title" id="">
+             <input type="text" name="title" id="title">
             </div>
             <div class="modal-footer">
-              <button type="button" id="addBtnSubmit" class="btn btn-outline-primary">Yes</button>
+              <button type="button" id="addBtnSubmit" data-dismiss="modal" class="btn btn-outline-primary">Yes</button>
               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
             </div>
           </div>
@@ -97,10 +104,10 @@
         </div>
         <div class="modal-body">
          <label for="">Title:</label>
-         <input type="text" name="title">
+         <input type="text" name="title" id="title-update">
         </div>
-        <div class="modal-footer">
-          <button type="button" id="UpdateBtnSubmit" class="btn btn-outline-primary">Yes</button>
+        <div class="modal-footer modal-footer-update">
+          <button type="button" id="updateBtnSubmit" class="btn btn-outline-primary" data-dismiss="modal">Yes</button>
           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -121,7 +128,7 @@
           <div class="modal-body">
             You really want to delete this product?
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer modal-footer-delete">
             <button type="button" id="deleteBtnSubmit" data-dismiss="modal" class="btn btn-outline-primary">Yes</button>
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
           </div>

@@ -25,11 +25,16 @@ async function init(e) {
 
         document.getElementById('pageSize').onclick = async function () {
 
+
+            res = await fetch("/api/product?count=1");
+            let newCount = await res.json();
+            newCount = newCount.count
+
             pageSize = await getPageSize()
             sortOption = await getSortOption();
             // console.log(pageSize);
 
-            showControls(count, pageSize, sortOption)
+            showControls(newCount, pageSize, sortOption)
 
             showTableContent(pageSize, currentIndex, e, sortOption);
         }
@@ -89,11 +94,8 @@ async function showTableContent(pageSize, currentIndex, e, sortOption) {
         tableContentHTML += `
         <tr>
         <th scope="row">${element._id}</th>
-        <td>${element.title}</td>
-        <td>
-                <button type="button" class="btn btn-outline-primary btnAdd" data-toggle="modal" data-target="#addModal">
-                   Add
-                </button>
+        <td class="title-value">${element.title}</td>
+        <td>            
                 <button type="button" id="${element._id}" class="btn btn-outline-warning btnUpdate" data-toggle="modal" data-target="#updateModal">
                    Update
                 </button>
@@ -129,7 +131,15 @@ async function showTableContent(pageSize, currentIndex, e, sortOption) {
         showTableContent(pageSize, currentIndex - 1, event, sortOption)
     }
 
-    addDeleteEvent()
+
+
+    res = await fetch("/api/product?count=1");
+    count = await res.json();
+    count = count.count
+
+    addEventAdd(count, pageSize, 1, e, sortOption)
+    addEventUpdate(count, pageSize, currentIndex, e, sortOption)
+    addDeleteEvent(count, pageSize, currentIndex, e, sortOption)
 
 }
 
@@ -175,31 +185,60 @@ function getSortOption() {
 }
 
 
-async function addDeleteEvent() {
-    let btnDelete = document.getElementsByClassName('btnDelete')
+async function addEventAdd(count, pageSize, currentIndex, e, sortOption) {
+    document.getElementById('title').value = '';
+    let btnAddSubmit = document.getElementById('addBtnSubmit')
 
-    numberOfProducts = await getPageSize()
-    let content = document.getElementById('body-content')
-    let tr = content.getElementsByTagName('tr')
-    let arrIDs = [];
+    btnAddSubmit.onclick = () => {
+        createProduct(count, pageSize, currentIndex, e, sortOption)
+    }
+}
 
-    console.log(btnDelete);
-    console.log(btnDelete[2].id);
+async function addEventUpdate(count, pageSize, currentIndex, e, sortOption) {
+    let btnUpdate = document.getElementsByClassName('btnUpdate')
 
-    for (let i = 0; i < numberOfProducts.length; i++) {
-        // arrIDs.push(tr[i].firstElementChild.innerHTML)
-        // console.log(tr[i].firstElementChild.innerText);
-        console.log(btnDelete[i]);
+    let btnUpdateSubmit = document.getElementById('updateBtnSubmit')
 
+
+    for (let i = 0; i < btnUpdate.length; i++) {
+        let id = btnUpdate[i].id;
+        btnUpdate[i].onclick = () => {
+            let values = document.getElementsByClassName('title-value');
+            // console.log(values[i]);
+            
+            document.getElementById('title-update').value = values[i].innerHTML
+            document.getElementsByClassName('modal-footer-update')[0].setAttribute("id", `${id}`)
+        }
     }
 
-    console.log(tr);
+    btnUpdateSubmit.onclick = () => {
+        updateProduct(count, pageSize, currentIndex, e, sortOption)
+    }
 
-    console.log(arrIDs);
+
+}
+
+async function addDeleteEvent(count, pageSize, currentIndex, e, sortOption) {
+    let btnDelete = document.getElementsByClassName('btnDelete')
+
+    // numberOfProducts = await getPageSize()
+
+    let btnDeleteSubmit = document.getElementById('deleteBtnSubmit')
 
     for (let i = 0; i < btnDelete.length; i++) {
-        // console.log(btnDelete[i]);
+        let id = btnDelete[i].id;
+        btnDelete[i].onclick = () => {
+            document.getElementsByClassName('modal-footer-delete')[0].setAttribute("id", `${id}`)
+        }
+    }
 
+    btnDeleteSubmit.onclick = () => {
+        deleteProduct(count, pageSize, currentIndex, e, sortOption)
     }
 
 }
+
+
+
+
+

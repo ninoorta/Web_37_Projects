@@ -1,0 +1,4 @@
+=>  Testing model V-model
+
+=>  unit test ~ Hàm / file
+=>  integration test

@@ -1,0 +1,33 @@
+@import './variables.scss';
+@import './mixin.scss';
+
+
+// .child{
+//     color: $color-primary;
+//     font-size: $font-size-2;
+//     line-height: $line-height-2;
+// }
+
+.parent {
+    padding: $padding-5;
+    border: 1px solid black;
+  
+    .child-1 {
+        @include text($font-size-1, $line-height-1, 700, #f2f2f2);
+    }
+
+    .child-2 {
+        @include text($font-size-5, $line-height-5);
+    }
+
+}
+
+
+
+
+
+// demo using file image
+// body {
+//     background: url('../assets/img/anh.png') center center no-repeat;
+//     background-size: cover;
+// }

@@ -1,0 +1,13 @@
+ wait to client socket connect
+ connect socket when initing
+
+emit: bắn sự kiện
+
+    events : 
+emit    "connection"        
+        "send-message"
+
+
+    "disconnect"
+
+ * use events to communicate

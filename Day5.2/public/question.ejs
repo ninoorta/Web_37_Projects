@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Question</title>
+</head>
+<body>
+    <!-- Data sẽ nằm ở h3 -->
+    <h3><%= question %></h3>  
+    <form action="/api/answer" method="GET">
+        <input type="submit" name="answer" value="Có/Đúng" />
+        <input type="submit" name="answer" value="Không/Sai"/>
+    </form>
+    <!-- <button>Có/Đúng</button>
+    <button>Không/Sai</button> -->
+</body>
+</html>

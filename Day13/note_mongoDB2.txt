@@ -1,0 +1,13 @@
+1. Nắm rõ yêu cầu của bài toán
+    - XĐ các thực thể (entity).
+        VD: games,  users,  rounds
+        Định nghĩa rõ về thành phần trong thực thể:
+            games ---- users
+                  ---- rounds
+            users : username
+            rounds : scores, round_number
+        =>  GameScore
+
+    - XĐ mối quan hệ giữa các thực thể
+        1 - n , n - n , 1 - 1
+            

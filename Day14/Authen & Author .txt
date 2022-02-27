@@ -1,0 +1,10 @@
+Authen
+    Session / Cookie
+    quy chiếu theo chuẩn REST 
+    => Token
+    
+
+    JSON WEB TOKEN    :     JWT ->  header: agorithms to encode token : thông tin thuật toán
+                                    payload: data you send to : {user_id / user_name / ...}    dữ liệu mình gửi tới
+                                    signature: secret key + encode(payload + header)
+            
